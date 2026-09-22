@@ -1,0 +1,3 @@
+@echo off
+echo Opening SAFE web demo...
+start "" "%~dp0index.html"

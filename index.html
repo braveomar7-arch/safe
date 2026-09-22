@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075e54">
+<title>SAFE - Mobility, Payments & Safety</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">MOBILITY • PAYMENTS • SAFETY</div>
+      <h1>SAFE</h1>
+    </div>
+    <button class="iconbtn" id="profileBtn" aria-label="Profile">OJ</button>
+  </header>
+
+  <main>
+    <section class="screen active" data-screen="home">
+      <div class="hero">
+        <div>
+          <span class="status">● Active member</span>
+          <h2>Move. Pay. Stay connected.</h2>
+          <p>Book rides, manage your wallet, subscribe to services and access safety support from one place.</p>
+        </div>
+      </div>
+
+      <div class="quick-grid">
+        <button class="quick" data-go="ride"><span>🚕</span><b>Book a ride</b><small>Request a nearby taxi</small></button>
+        <button class="quick" data-go="wallet"><span>💳</span><b>Wallet</b><small>Balance & payments</small></button>
+        <button class="quick safe" data-go="safety"><span>🛡️</span><b>Save Me</b><small>Safety assistance</small></button>
+        <button class="quick" data-go="plans"><span>★</span><b>Subscriptions</b><small>Daily to yearly plans</small></button>
+      </div>
+
+      <div class="section-head"><h3>Current plan</h3><button data-go="plans">Manage</button></div>
+      <div class="card plan-card">
+        <div><small>MONTHLY</small><h3>Mobility Plus</h3><p>Valid until 22 Oct 2026</p></div>
+        <div class="price">GMD 199</div>
+      </div>
+
+      <div class="section-head"><h3>Sponsored</h3><span>Advertisement</span></div>
+      <div class="ad-card" id="homeAd">
+        <div><small>LOCAL PARTNER</small><h3>Reach customers on the move</h3><p>Advertising placements are managed from the admin portal.</p></div>
+        <button>Learn more</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="ride">
+      <div class="screen-title"><button class="back" data-go="home">‹</button><div><small>MOBILITY</small><h2>Book a taxi</h2></div></div>
+      <div class="map">
+        <div class="road r1"></div><div class="road r2"></div><div class="road r3"></div>
+        <div class="pin pickup">A</div><div class="pin dest">B</div><div class="car">🚕</div>
+        <span class="map-note">Interactive map placeholder</span>
+      </div>
+      <div class="card form-card">
+        <label>Pickup<input id="pickup" value="Current location"></label>
+        <label>Destination<input id="destination" placeholder="Where are you going?"></label>
+        <label>Ride type<select id="rideType"><option>Standard taxi</option><option>Comfort</option><option>Shared ride</option></select></label>
+        <div class="fare"><span>Estimated fare</span><strong id="fare">GMD 185</strong></div>
+        <button class="primary" id="requestRide">Request ride</button>
+      </div>
+      <div id="rideResult"></div>
+    </section>
+
+    <section class="screen" data-screen="wallet">
+      <div class="screen-title"><button class="back" data-go="home">‹</button><div><small>PAYMENTS</small><h2>Wallet</h2></div></div>
+      <div class="balance-card"><small>AVAILABLE BALANCE</small><h2>GMD 1,250.00</h2><div><button id="addMoney">+ Add money</button><button>Send</button></div></div>
+      <h3>Recent activity</h3>
+      <div class="list">
+        <div class="row"><span class="round">🚕</span><div><b>Taxi ride</b><small>Today, 16:42</small></div><strong>- GMD 185</strong></div>
+        <div class="row"><span class="round">★</span><div><b>Monthly subscription</b><small>20 Sep</small></div><strong>- GMD 199</strong></div>
+        <div class="row"><span class="round">＋</span><div><b>Wallet top-up</b><small>18 Sep</small></div><strong class="positive">+ GMD 1,000</strong></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="plans">
+      <div class="screen-title"><button class="back" data-go="home">‹</button><div><small>MEMBERSHIP</small><h2>Subscriptions</h2></div></div>
+      <p class="lead">Choose the period that suits you. Pricing and included services are configurable by the administrator.</p>
+      <div class="segmented" id="planTabs">
+        <button class="active" data-period="daily">Daily</button><button data-period="weekly">Weekly</button><button data-period="monthly">Monthly</button><button data-period="yearly">Yearly</button>
+      </div>
+      <div class="card subscription">
+        <div><span class="badge">MOBILITY</span><h3>Mobility Plus</h3><p>Priority booking, member offers and reduced service fees.</p></div>
+        <div class="sub-bottom"><strong id="mobilityPrice">GMD 15 / day</strong><button class="primary subscribe">Subscribe</button></div>
+      </div>
+      <div class="card subscription safety-sub">
+        <div><span class="badge safety-badge">SAFETY</span><h3>Save Me</h3><p>Safety assistance, emergency contacts and nearby verified responder alerts.</p></div>
+        <div class="sub-bottom"><strong id="safetyPrice">GMD 5 / day</strong><button class="primary subscribe">Subscribe</button></div>
+      </div>
+      <p class="notice">Complimentary subscriptions can be granted by an administrator for loyalty, promotions or approved campaigns.</p>
+    </section>
+
+    <section class="screen" data-screen="safety">
+      <div class="screen-title"><button class="back" data-go="home">‹</button><div><small>SAFETY</small><h2>Save Me</h2></div></div>
+      <div class="safety-panel">
+        <div class="shield">🛡️</div>
+        <h2>Need help?</h2>
+        <p>Press and hold the button for 2 seconds to start a safety alert.</p>
+        <button id="sos" class="sos">HOLD TO ACTIVATE</button>
+        <div class="safety-links"><button id="testAlert">Test mode</button><button>Emergency contacts</button></div>
+      </div>
+      <div class="card privacy">
+        <h3>Privacy-first alerting</h3>
+        <p>The production design should alert opted-in, verified nearby responders and trusted contacts. Exact live location should only be shared according to consent, role and emergency policy, rather than broadcast openly to every user.</p>
+      </div>
+      <div id="safetyStatus"></div>
+    </section>
+
+    <section class="screen" data-screen="admin">
+      <div class="screen-title"><button class="back" data-go="home">‹</button><div><small>OPERATIONS</small><h2>Admin portal</h2></div></div>
+      <div class="metrics">
+        <div><small>ACTIVE USERS</small><b>1,284</b></div><div><small>ACTIVE PLANS</small><b>842</b></div><div><small>RIDES TODAY</small><b>316</b></div><div><small>OPEN ALERTS</small><b>2</b></div>
+      </div>
+      <div class="admin-tabs">
+        <button class="active" data-admin="subs">Subscriptions</button><button data-admin="grants">Free access</button><button data-admin="ads">Advertising</button><button data-admin="alerts">Safety</button>
+      </div>
+      <div class="admin-panel active" data-panel="subs">
+        <h3>Subscription pricing</h3>
+        <div class="table">
+          <div class="tr head"><span>Service</span><span>Daily</span><span>Weekly</span><span>Monthly</span><span>Yearly</span></div>
+          <div class="tr"><b>Mobility Plus</b><input value="15"><input value="75"><input value="199"><input value="1990"></div>
+          <div class="tr"><b>Save Me</b><input value="5"><input value="25"><input value="79"><input value="790"></div>
+        </div>
+        <button class="primary save">Save pricing</button>
+      </div>
+      <div class="admin-panel" data-panel="grants">
+        <h3>Grant complimentary subscription</h3>
+        <label>User email or phone<input placeholder="user@example.com"></label>
+        <label>Service<select><option>Mobility Plus</option><option>Save Me</option><option>Both services</option></select></label>
+        <label>Duration<select><option>7 days</option><option>30 days</option><option>90 days</option><option>1 year</option></select></label>
+        <label>Reason<input placeholder="Loyalty reward / promotion / campaign"></label>
+        <button class="primary save">Grant access</button>
+      </div>
+      <div class="admin-panel" data-panel="ads">
+        <h3>Advertising manager</h3>
+        <label>Campaign name<input value="Local Partner Campaign"></label>
+        <label>Placement<select><option>Home sponsored card</option><option>Ride confirmation</option><option>Wallet offers</option></select></label>
+        <label>Advert text<textarea>Reach customers on the move.</textarea></label>
+        <div class="toggle-row"><span>Campaign active</span><input type="checkbox" checked></div>
+        <button class="primary save">Save campaign</button>
+      </div>
+      <div class="admin-panel" data-panel="alerts">
+        <h3>Safety operations</h3>
+        <div class="row"><span class="round danger">!</span><div><b>Alert #SM-2041</b><small>Opened 2 minutes ago • location restricted</small></div><button>Review</button></div>
+        <div class="row"><span class="round">✓</span><div><b>Alert #SM-2039</b><small>Resolved • 18 minutes</small></div><button>View</button></div>
+        <p class="notice">A production safety console should use role-based access, audit logs, responder verification, retention rules and escalation procedures.</p>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="profile">
+      <div class="screen-title"><button class="back" data-go="home">‹</button><div><small>ACCOUNT</small><h2>Profile</h2></div></div>
+      <div class="card profile-card"><div class="avatar">OJ</div><div><h3>Omar J.</h3><p>Verified user • +220 *** **07</p></div></div>
+      <div class="list menu-list">
+        <button><span>Identity & verification</span><b>›</b></button><button><span>Payment methods</span><b>›</b></button><button><span>Trusted contacts</span><b>›</b></button><button><span>Privacy & location permissions</span><b>›</b></button><button data-go="admin"><span>Admin demo</span><b>›</b></button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottomnav">
+    <button class="active" data-go="home"><span>⌂</span>Home</button>
+    <button data-go="ride"><span>🚕</span>Ride</button>
+    <button data-go="safety" class="navsafe"><span>🛡️</span>Save Me</button>
+    <button data-go="wallet"><span>▣</span>Wallet</button>
+    <button data-go="profile"><span>●</span>Account</button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+</div>
+<script src="assets/app.js"></script>
+</body></html>
